@@ -7,9 +7,6 @@ Puppet::Parser::Functions.newfunction(:ensure_resource,
 Takes a resource type, title, and a list of attributes that describe a
 resource.
 
-Returns true if a resource with the specified attributes has already been added
-to the catalog, and false otherwise.
-
     user { 'dan':
       ensure => present,
     }
