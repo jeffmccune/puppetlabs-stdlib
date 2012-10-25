@@ -17,7 +17,11 @@ end
 
 Facter.add("is_pe") do
   setcode do
-    not Facter.value("pe_version").nil? and not Facter.value("pe_version").empty?
+    if Facter.value(:pe_version).to_s.empty? then
+      false
+    else
+      true
+    end
   end
 end
 
