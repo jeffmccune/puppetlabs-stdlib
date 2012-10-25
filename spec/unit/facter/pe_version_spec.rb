@@ -3,16 +3,16 @@
 require 'spec_helper'
 
 describe "PE Version specs" do
+  before :each do
+    Facter.collection.loader.load(:pe_version)
+  end
+
   context "If PE is installed" do
     %w{ 2.6.1 2.10.300 }.each do |version|
       puppetversion = "2.7.19 (Puppet Enterprise #{version})"
       context "puppetversion => #{puppetversion}" do
-        before :all do
+        before :each do
           Facter.fact(:puppetversion).stubs(:value).returns(puppetversion)
-        end
-
-        after :all do
-          Facter.clear
         end
 
         (major,minor,patch) = version.split(".")
@@ -40,13 +40,9 @@ describe "PE Version specs" do
     end
   end
 
-  context "If PE is not installed" do
-    before :all do
+  context "When PE is not installed" do
+    before :each do
       Facter.fact(:puppetversion).stubs(:value).returns("2.7.19")
-    end
-
-    after :all do
-      Facter.clear
     end
 
     it "is_pe is false" do
