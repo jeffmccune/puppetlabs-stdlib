@@ -1,3 +1,7 @@
+# TESTING
+
+This is just testing if I can make a call using https to heroku.
+
 # Puppet Labs Standard Library #
 
 This module provides a "standard library" of resources for developing Puppet
